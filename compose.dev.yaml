@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes: #Synchronise les fichiers
+      - ./client/src:/app/src
+      - ./client/public:/app/public
+    ports:
+      - "8080:5173" # Port de Vite exposé sur localhost:8080
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "run", "dev"] # Lance le serveur Vite
